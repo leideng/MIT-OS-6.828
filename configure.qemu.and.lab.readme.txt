@@ -1,0 +1,26 @@
+1 Configure Qemu in Linux server (say cic10)
+
+1) Download Qemu (qemu-2.7.0-rc1.tar.bz2) from http://wiki.qemu.org/Download
+2) Extract Qemu: (in courses/OS6828)
+       tar xjf qemu-2.7.0-rc1.tar.bz2  
+3) In courses/OS6828/qemu-2.7.0-rc1, create a sub-folder to configure qemu later: 
+       mkdir bin
+4) In courses/OS6828/qemu-2.7.0-rc1/bin, configure qemu for both target i386-softmmu and x86_64-softmmu. Since
+we do not have gtk for graphic display, we should disable it. Also specify --prefix=./ will install the qemu 
+in the current directory, i.e., courses/OS6828/qemu-2.7.0-rc1/bin
+       ../configure --disable-kvm --disable-gtk --prefix=./ --target-list="i386-softmmu x86_64-softmmu"
+5) make and install
+       make && make install
+
+
+2 Configure Lab 
+1) In courses/OS6828, copy the jos.git to courses/OS6828/lab
+    git clone https://pdos.csail.mit.edu/6.828/2014/jos.git lab
+2) In courses/OS6828/lab, run "make" to create the jos image file
+   make
+3) Run the jos image file in qemu without VGA
+   make qemu-nox
+4) Use first "crol-a" and then "x" to exit qemu   
+   
+   
+    

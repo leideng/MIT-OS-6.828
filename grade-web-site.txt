@@ -1,0 +1,8 @@
+Someone requested that your 6.828 api-key be emailed to you.
+You can login via the link below:
+
+    http://ccutler.scripts.mit.edu/6.828/handin.py/api/PCXEV8TL34J01LFNYTR0WGVI0XWV4TQR
+
+Your api-key is:
+
+    PCXEV8TL34J01LFNYTR0WGVI0XWV4TQR
