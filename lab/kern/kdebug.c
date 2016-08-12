@@ -179,7 +179,39 @@ debuginfo_eip(uintptr_t addr, struct Eipdebuginfo *info)
 	//	Look at the STABS documentation and <inc/stab.h> to find
 	//	which one.
 	// Your code here.
+    if (lfun <= rfun) 
+    {
+        // If lfun <= rfun, it's a function span search.
+        // In this case, n_value is in order!
+        // So use binary search.
+        stab_binsearch(stabs, &lline, &rline, N_SLINE, addr);
 
+        if (lline > rline)
+            return -1;
+    } else 
+    {
+        // Note that if lfun > rfun, lline, rline == lfile, rfile,
+        // which means a file span search.
+        // In this case, n_value is not in order!
+        // Cannot use binary search, so just sequential search.
+        int index;
+        for (index = lline; index <= rline; ++index)
+            if (stabs[index].n_type == N_SLINE) {
+                uintptr_t stab_addr = stabs[index].n_value;
+                if (stab_addr == addr) {
+                    lline = index;
+                    break;
+                } else if (stab_addr > addr) {
+                    lline = index - 1;
+                    break;
+                }
+            }
+
+        if (index > rline)
+            return -1;
+    }
+
+    info->eip_line = stabs[lline].n_desc;
 
 	// Search backwards from the line number for the relevant filename
 	// stab.
