@@ -1,0 +1,29 @@
+# Output of info r and x/24x $esp:
+
+~~~~
+(gdb) info r
+eax            0x0      0
+ecx            0x0      0
+edx            0x1f0    496
+ebx            0x10074  65652
+esp            0x7bbc   0x7bbc
+ebp            0x7bf8   0x7bf8
+esi            0x0      0
+edi            0x11513c 1134908
+eip            0x10000c 0x10000c
+eflags         0x46     [ PF ZF ]
+cs             0x8      8
+ss             0x10     16
+ds             0x10     16
+es             0x10     16
+fs             0x0      0
+gs             0x0      0
+
+(gdb) x/24x $esp
+0x7bbc: 0x00007dc4      0x00000000      0x00000000      0x00000000
+0x7bcc: 0x00000000      0x00000000      0x00000000      0x00000000
+0x7bdc: 0x00010074      0x00000000      0x00000000      0x00000000
+0x7bec: 0x00000000      0x00000000      0x00000000      0x00000000
+0x7bfc: 0x00007c4d      0x8ec031fa      0x8ec08ed8      0xa864e4d0
+0x7c0c: 0xb0fa7502      0xe464e6d1      0x7502a864      0xe6dfb0fa
+~~~~
